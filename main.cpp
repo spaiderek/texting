@@ -1,47 +1,42 @@
 #include <iostream>
-void menu(void){
-    printf("1. Enter the text into the array\n");
-    printf("2. Show text in array\n");
-    printf("3. Determi text size\n");
-    printf("0. EXIT\n");
-    printf("Select the option:\n");
-}
-void clear(void){
-    while(getchar() != '\n');
+#include "text.h"
+void menu(){
+    printf("1. Enter Text\n");
+    printf( "2. Print Text\n");
+    printf( "3. Text Length\n");
+    printf( "4. Change To Big Letters\n");
+    printf( "5. Change To Small Letters\n");
+    printf( "6. EXIT\n");
+    printf("Select an option:\n");
 }
 int main() {
-    char text[100] = "";
-    int length = 0;
-    int option = 0;
-
-    do {
+    char text[100] = " ";
+    int choice = 0 ;
+    do{
         menu();
-        scanf("%d", &option);
+        scanf("%d",&choice);
         clear();
-        switch (option) {
-            case 0:
-                break;
+        switch(choice)
+        {
             case 1:
-                printf("1. Enter the text into the array\n");
-                //scanf("%s", gets(text));
-                fgets(text, 99, stdin);
+                enterText(text);
                 break;
             case 2:
-                printf("2. Show text in array\n");
-                printf("Text in array:\n %s \n\n", text);
+                printText(text);
                 break;
-                case 3:
-                    int counter = 0;
-                    while( *(text + counter)){
-                        counter++;
-                    }
-                    counter-=1;
-                    printf("Text size:\n %d\n",counter);
+            case 3:
+                printf("Text length = %d\n", count(text));
+                break;
+            case 4:
+                bigLetters(text);
+                puts("Change To Big Letters\n");
+                break;
+            case 5:
+                smallLetters(text);
+                puts("Change To Small Letters\n");
+                break;
+            case 6:
                 break;
         }
-}while(option !=0);
-
-    printf("The End\n");
-
-    return 0;
+    }while( choice!=6);
 }
